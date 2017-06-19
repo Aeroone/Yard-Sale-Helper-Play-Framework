@@ -1,0 +1,155 @@
+@(saleEventID : String, items : List[Item])
+@main("Create New Transaction") {
+
+  @*
+  * Get an `Html` object by calling the built-in Play welcome
+  * template and passing a `String` message.
+  *@
+
+  @*
+  * @play20.welcome(message, style = "Java")
+  *@
+}
+
+<html>
+  <style type="text/css">
+  .container {
+    border:2px solid white;
+    text-align: left;
+    width:400px;
+    height: 100px;
+    overflow-y: scroll;
+    margin:0 auto
+  }
+  .cancelbutton {
+    text-align: right;
+  }
+  #registerform
+  {
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    margin-left:-150px;
+    margin-top:-150px;
+
+    float:left;
+    width:350px;
+    height:350px;
+    padding:10px 15px;
+    background:#A9A9A9;
+    border-radius:3px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.4);
+  }
+
+  p
+  {
+    text-align:center;
+  }
+  p1
+  {
+    text-align:left;
+  }
+
+  #cancel
+  {
+    float:left;
+    width:40px;
+    height:8px;
+    padding:10px 15px;
+    position:absolute;
+    left: 48%;
+    top: 54%;
+    margin-left:10px;
+    margin-top:40px;
+
+  }
+
+  button
+  {
+    position:absolute;
+    left: 25%;
+    top: 70%;
+    margin-top: 10px;
+    margin-bottom: 1px;
+    font-family: inherit;
+    color: white;
+    background: #6495ED;
+    outline: none;
+    border: none;
+    padding: 5px 15px;
+    font-size: 1.0em;
+    font-weight: 400;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.4);
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+  }
+
+  h1
+  {
+    text-align:center;
+    color:white;
+    font-size:15px;
+    padding:12px 0px;
+  }
+  </style>
+
+  <body>
+    <head>
+      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/content.css")">
+    </head>
+    <header id="header">
+      <a href="@routes.SaleController.saleInfo(saleEventID)" class="button"><en>Back</en></a>
+    </header>
+
+    <div class="form">
+
+      <form action = "@routes.TransactionController.createTransaction(saleEventID)" method = "post">
+        <h1>Create a New Transaction</h1>
+        <p>
+          Customer Username: <input type="name" name="userName" placeholder="Name">
+        </p>
+        <p>
+           Purchase Date: <input type="date" name="date" placeholder="mm/dd/yyyy">
+        </p>
+        <h1>Add Items</h1>
+        <div class = "container">
+        @import java.math.BigInteger; var i = 0
+        @for(item <- items){
+          @if(item.getName().length() > 0 && item.getQuantity() > 0) {
+            <p1>
+              @if(item.getMinimumPrice() != item.getPrice()) {
+                Stock#: @item.getId() - @item.getName(): <input type = 'number' name = '@item.getId()' min = '0' max = '@item.getQuantity()' value = '0'>
+                $<input type = "number" name = 'HAGGLE:@item.getName()' step = '0.25' min = '@Double.parseDouble(item.getMinimumPrice())' max = '@item.getPrice()' value = '@item.getPrice()'>
+                <br>
+              } else {
+                Stock#: @item.getId() - @item.getName(): <input type = 'number' name = '@item.getId()' min = '0' max = '@item.getQuantity()' value = '0'>
+                $@item.getPrice()
+                <br>
+              }
+            </p1>
+            @{i = i + 1}
+          }
+        }
+        </div>
+        <p>
+          <button class="button">Create Transaction</button>
+        </p>
+      </form>
+        <form action = "@routes.HomeController.content" method = "get">
+            <div>
+                <p>
+                    <button class="button">Cancel</button>
+                </p>
+            </div>
+
+        </form>
+    </div>
+
+  </body>
+
+</html>
+
+

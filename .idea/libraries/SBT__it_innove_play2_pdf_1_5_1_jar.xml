@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: it.innove:play2-pdf:1.5.1:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/it.innove/play2-pdf/jars/play2-pdf-1.5.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/it.innove/play2-pdf/srcs/play2-pdf-1.5.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,99 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+@(userForm: Form[controllers.ItemController.ItemID], itemList: List[models.Item], user: User, saleEvent: SaleEvent)
+
+@*
+ * Call the `main` template with two arguments. The first
+ * argument is a `String` with the title of the page, the second
+ * argument is an `Html` object containing the body of the page.
+ *@
+@main("Browse Items") {
+
+    @*
+     * Get an `Html` object by calling the built-in Play welcome
+     * template and passing a `String` message.
+     *@
+
+    @*
+    * @play20.welcome(message, style = "Java")
+    *@
+
+    @*
+    *<form action = "@routes.HomeController.addPerson()" method = "post">
+    *    <input type="text" name="name" />
+    *    <button>Add Person</button>
+    *</form>
+    *@
+}
+
+<html>
+    <head>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/content.css")">
+    </head>
+    <body>
+        <header>
+            <dl id="user">
+                <dt>@user.name <span>(@user.email)</span></dt>
+                <dd>
+                    <a href="@routes.HomeController.logout()">Logout</a>
+
+                    @if(user.getAuthority().equals("Seller")) {
+                        <a href="@routes.HomeController.content()" id="logo"><en>Back</en></a>
+                        <a href="@routes.ItemController.printTags(saleEvent.ID)">Print Tags</a>
+                    }
+                    @if(user.getAuthority().equals("Clerk")) {
+                        <a href="@routes.HomeController.content()" id="logo"><en>Back</en></a>
+                    }
+                    @if(user.getAuthority().equals("Cashier")) {
+                        <a href="@routes.HomeController.content()" id="logo"><en>Back</en></a>
+                    }
+                    @if(user.getAuthority().equals("Admin") || user.getAuthority().equals("Guest") || user.getAuthority.equals("SuperUser")) {
+                        <a href="@routes.SaleController.saleInfo(saleEvent.ID)" id="logo"><en>Back</en></a>
+                    }
+                </dd>
+            </dl>
+        </header>
+
+        <ul style="color: white; font-family: 'Rockwell Extra Bold'">
+            @for(item <- itemList) {
+                <p>
+                    StockId: @item.getId()
+                </p>
+                <p>
+                  Name: @item.getName()
+                </p>
+                <p>
+                  Location: @item.getLocation()
+                </p>
+                <p>
+                  Description: @item.getDescription()
+                </p>
+                <p>
+                  Price: @item.getPrice()
+                </p>
+                <p>
+                    Quantity: @item.getQuantity()
+                </p>
+                @if(item.getPhoto() != null && item.getPhoto().length() > 0) {
+                    <img src="@routes.ItemController.getImage(item.getId())"/>
+                }
+                @if(!user.getAuthority().equals("Clerk")) {
+                    <form action="@routes.ItemController.postsearchItem()" method="POST">
+                        <input type="hidden" name="id" value = "@item.getId()"/>
+                        <input type="submit" value="Delete" name= "Delete"/>
+                        <input type="submit" value="Update" name= "Update"/>
+                    </form>
+                    @helper.form(action = routes.ItemController.uploadImage(item.getId()), 'enctype -> "multipart/form-data") {
+                        <input type="file" name="picture">
+                        <p>
+                            <button>Upload Image</button>
+                        </p>
+                    }
+                }
+            }
+        </ul>
+    </body>
+</html>

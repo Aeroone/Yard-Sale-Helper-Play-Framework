@@ -1,0 +1,87 @@
+@(user: User, ID: String)
+
+@main("Yard Sale - Home") {
+
+}
+<!DOCTYPE>s
+<html>
+    <head>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/content.css")">
+    </head>
+    <body>
+    <body>
+        <header class="header">
+            <dt>@user.email</dt>
+            <a href="@routes.HomeController.editProfile()" style="font-size: 12px" class="button">Edit Profile</a>
+            <a href="@routes.HomeController.logout()" style="font-size: 12px" class="button">Logout</a>
+        </header>
+        <h1 class="wel">Welcome, @user.name!</h1>
+        <h2 class="title">THE ULTIMATE YARD SALE HELPER</h2>
+        <div>
+         <dd class="links">
+             @if(user.getAuthority().equals("Bookkeeper")) {
+                 @if(SaleEvent.findSale(ID) != null) {
+                     <a href="@routes.TransactionController.bookTransactions(ID)"class="button">Transactions List</a>
+                     <a href="@routes.SaleController.viewFinancialReport(ID)"class="button">Financial Report</a>
+                 }
+                 @if(SaleEvent.findSale(ID) == null) {
+                     <p>
+                         *** The sale has been deleted! ***
+                     </p>
+                 }
+             }
+
+             @if(user.getAuthority().equals("Cashier")) {
+                 @if(SaleEvent.findSale(ID) != null) {
+                     <a href="@routes.ItemController.searchItem(ID)"class="button">Search all Items</a>
+                     <a href="@routes.ItemController.addItem(ID)"class="button">Add Items</a>
+                     <a href="@routes.TransactionController.listTransactions(ID)"class="button">View Transactions</a>
+                 }
+                 @if(SaleEvent.findSale(ID) == null) {
+                     <p>
+                         *** The sale has been deleted! ***
+                     </p>
+                 }
+             }
+
+             @if(user.getAuthority().equals("Clerk")) {
+                 @if(SaleEvent.findSale(ID) != null) {
+                     <a href="@routes.ItemController.searchItem(ID)" class="button">Search all Items</a>
+                 }
+                 @if(SaleEvent.findSale(ID) == null) {
+                     <p>
+                         *** The sale has been deleted! ***
+                     </p>
+                 }
+             }
+
+             @if(user.getAuthority().equals("Seller")) {
+                 @if(SaleEvent.findSale(ID) != null) {
+                     <a href="@routes.ItemController.searchItem(ID)" class="button">Search all Items</a>
+                     <a href="@routes.SaleController.listSales()" class="button">View Active Sale Events</a>
+                     <a href="@routes.ItemController.addItem(ID)" class="button">Add Item</a>
+                 }
+                 @if(SaleEvent.findSale(ID) == null) {
+                     <p>
+                         *** The sale has been deleted! ***
+                     </p>
+                 }
+             }
+
+             @if(user.getAuthority().equals("SuperUser")) {
+                 <a href="@routes.HomeController.logout()" class="button">Logout</a>
+                 <a href="@routes.HomeController.editProfile()" class="button">Edit Profile</a>
+                 <a href="@routes.SaleController.listSales()" class="button">View Active Sale Events</a>
+                 <a href="@routes.SaleController.createSalePage()" class="button">Create New Sale Event</a>
+                 <a href="@routes.UserController.searchUser()" class="button">List all users</a>
+             }
+
+             @if(user.getAuthority().equals("Admin") || user.getAuthority().equals("Guest")) {
+                 <a href="@routes.SaleController.createSalePage()" class="button">Create New Sale Event</a>
+                 <a href="@routes.SaleController.listSales()" class="button">View Active Sale Events</a>
+             }
+         </dd>
+        </div>
+    </body>
+</html>

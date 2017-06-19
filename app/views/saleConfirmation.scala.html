@@ -1,0 +1,28 @@
+@(saleEventID : String, transactionID: String)
+
+@main("Transaction Created") {
+
+}
+
+    <html>
+        <head>
+            <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+            <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/content.css")">
+        </head>
+        <style type = "text/css">
+        p
+        {
+        text-align:center;
+        }
+        </style>
+        <h>
+            <h1>Transaction Created!</h1>
+        </h>
+        <a style="color: white;" href="@routes.SaleController.saleInfo(saleEventID)">Done</a>
+        <a style="color: white;" href="@routes.TransactionController.printReceipt(transactionID)" ><en>Print Receipt</en></a>
+        <a style="color: white;" href="@routes.EmailController.sendReceipt(saleEventID, transactionID)">Email Receipt</a>
+        @if(flash.containsKey("success")) {
+            <p style="color: white;">@flash.get("success")</p>
+        }
+
+    </html>

@@ -1,0 +1,76 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+# POST    /person                     controllers.HomeController.addPerson
+# GET     /person                     controllers.HomeController.getPersons
+
+GET     /content                    controllers.HomeController.content
+
+#login
+GET     /login                      controllers.HomeController.login
+POST    /login                      controllers.HomeController.postlogin
+#logout
+GET     /logout                     controllers.HomeController.logout
+#register
+GET     /register                   controllers.HomeController.register
+POST    /register                   controllers.HomeController.postRegister
+#profile
+GET     /profile                     controllers.HomeController.editProfile
+POST    /profile                     controllers.HomeController.posteditProfile
+
+#sale events
+GET     /createSalePage              controllers.SaleController.createSalePage
+GET     /activesales                 controllers.SaleController.listSales
+POST    /createsale                  controllers.SaleController.createSale
+GET     /saleinfo                    controllers.SaleController.saleInfo(ID: String)
+POST    /updatesale                  controllers.SaleController.updateSale(ID: String)
+POST    /deletesale                  controllers.SaleController.deleteSale(ID: String)
+POST    /closeSale                   controllers.SaleController.closeSale(ID: String)
+GET     /printFinancialReport        controllers.SaleController.viewFinancialReport(ID: String)
+GET     /printAltFinancialReport     controllers.SaleController.viewAltFinancialReport(ID: String)
+#Add Items
+GET     /additems                    controllers.ItemController.addItem(ID: String)
+POST    /additems                    controllers.ItemController.postaddItem(ID: String)
+#Upload item's image
+POST    /uploadimage               	  controllers.ItemController.uploadImage(ID: Integer)
+GET     /getImage                     controllers.ItemController.getImage(ID: Integer)
+#Search/Delete Items
+GET     /searchitems                  controllers.ItemController.searchItem(ID: String)
+POST    /searchitems                  controllers.ItemController.postsearchItem()
+
+#Search/Delete UniqueItem
+GET     /searchUniqueItems               controllers.ItemController.searchUniqueItem(ID: String)
+POST    /searchUniqueItems               controllers.ItemController.postsearchUniqueItem(ID: String)
+GET      /printUniqueItem                controllers.ItemController.printUniqueItem(itemname: String, ID: String)
+POST     /printUniqueItem                controllers.ItemController.postprintUniqueItem()
+GET     /printTags                      controllers.ItemController.printTags(ID: String)
+#Search Unsolded Items
+GET     /searchUnsoldedItems             controllers.ItemController.searchUnsoldedItem(ID: String)
+
+#Transaction
+GET /createTransactionPage                  controllers.TransactionController.createTransactionPage(ID: String)
+POST /createTransaction                     controllers.TransactionController.createTransaction(ID: String)
+GET  /listTransactions                      controllers.TransactionController.listTransactions(ID: String)
+GET /printReceipt                           controllers.TransactionController.printReceipt(ID: String)
+GET /listAllTransactions                    controllers.TransactionController.bookTransactions(ID: String)
+
+#Update Items
+GET     /updateitems                  controllers.ItemController.updateItem(itemId: Int )
+POST    /updateitems                  controllers.ItemController.postupdateItem
+
+
+#Users Edit
+GET     /searchusers                 controllers.UserController.searchUser()
+POST    /updateusers                  controllers.UserController.postsearchUser()
+
+#Assign users
+GET     /assignusers                 controllers.UserController.assignAdmin(ID: String)
+POST    /assignusers                  controllers.UserController.postassignAdmin(ID: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+GET     /sendmail                   controllers.EmailController.sendReceipt(saleID: String, transID : String)

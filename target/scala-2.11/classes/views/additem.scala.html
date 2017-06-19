@@ -1,0 +1,96 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+@(userForm: Form[controllers.ItemController.Itemform], user: User, saleEvent: SaleEvent)
+
+@*
+ * Call the `main` template with two arguments. The first
+ * argument is a `String` with the title of the page, the second
+ * argument is an `Html` object containing the body of the page.
+ *@
+@main("Add items") {
+
+    @*
+     * Get an `Html` object by calling the built-in Play welcome
+     * template and passing a `String` message.
+     *@
+
+    @*
+    * @play20.welcome(message, style = "Java")
+    *@
+
+    @*
+    *<form action = "@routes.HomeController.addPerson()" method = "post">
+    *    <input type="text" name="name" />
+    *    <button>Add Person</button>
+    *</form>
+    *@
+}
+
+<html>
+    <head>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/content.css")">
+    </head>
+    <body>
+        <header id = "header">
+            <dt>@user.name <span>(@user.email)</span></dt>
+                <a href="@routes.HomeController.logout()" class = "button" style = "font-size: 12px">Logout</a>
+                @if(user.getAuthority().equals("Admin") || user.getAuthority().equals("SuperUser")) {
+                    <a href="@routes.SaleController.saleInfo(saleEvent.ID)" style="font-size: 12px" class = "button"><en>Back</en></a>
+                }
+                @if(user.getAuthority().equals("Cashier")) {
+                        <a href="@routes.HomeController.content()" style="font-size: 12px" class = "button"><en>Back</en></a>
+                }
+        </header>
+
+            @*
+            <form action = "@routes.HomeController.content" method = "get">
+
+                <div id="cancel">
+                    <p>
+                        <button>Cancel</button>
+                    </p>
+                </div>
+
+            </form>
+            *@
+        <div class = "form">
+        <form action = "@routes.ItemController.postaddItem(saleEvent.ID)" method = "post">
+            <h1>Add Item</h1>
+
+            <p>
+                Seller name:  @user.name
+            </p>
+
+            <p>
+                Name: <input type = "name" name="name">
+            </p>
+
+            <p>
+                Price: <input type = "price" name="price">
+            </p>
+            <p>
+                Minimum Price: <input type = "text" name="minPrice">
+            </p>
+
+
+            <p>
+                Location:  <input type="location" name="location">
+            </p>
+
+            <p>
+                Description: <input type="description" name="description">
+            </p>
+            <p>
+                Quantity: <input type = "number" name = "quantity" min = 0 value = 0>
+            </p>
+
+            <p>
+                <button class = "button">Add Item</button>
+            </p>
+        </form>
+        </div>
+    </body>
+</html>

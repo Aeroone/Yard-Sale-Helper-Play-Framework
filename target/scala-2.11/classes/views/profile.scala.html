@@ -1,0 +1,154 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+@(userForm: Form[controllers.HomeController.Profile], user:User)
+
+@*
+ * Call the `main` template with two arguments. The first
+ * argument is a `String` with the title of the page, the second
+ * argument is an `Html` object containing the body of the page.
+ *@
+@main("Register") {
+}
+<!DOCTYPE>
+<html>
+    @*<style type="text/css">*@
+
+        @*#profileform*@
+        @*{*@
+            @*position: absolute;*@
+            @*top:0;*@
+            @*bottom: 0;*@
+            @*left: 0;*@
+            @*right: 0;*@
+            @*margin: 100px auto;*@
+
+            @*float: center;*@
+            @*width:350px;*@
+            @*height:450px;*@
+            @*padding:10px 15px;*@
+            @*background:#A9A9A9;*@
+            @*border-radius:3px;*@
+            @*border-radius: 3px;*@
+            @*box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.4);*@
+        @*}*@
+
+        @*#cancel*@
+        @*{*@
+            @*float:left;*@
+            @*width:40px;*@
+            @*height:10px;*@
+            @*padding:10px 15px;*@
+            @*position:absolute;*@
+            @*left: 48%;*@
+            @*top: 75.5%;*@
+            @*margin-left:10px;*@
+            @*margin-top:40px;*@
+        @*}*@
+
+        @*button*@
+        @*{*@
+            @*position:absolute;*@
+            @*left: 25%;*@
+            @*top: 90%;*@
+            @*margin-top: 10px;*@
+            @*margin-bottom: 1px;*@
+            @*font-family: inherit;*@
+            @*color: white;*@
+            @*background: #6495ED;*@
+            @*outline: none;*@
+            @*border: none;*@
+            @*padding: 5px 15px;*@
+            @*font-size: 1.0em;*@
+            @*font-weight: 400;*@
+            @*border-radius: 3px;*@
+            @*box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.4);*@
+            @*cursor: pointer;*@
+            @*transition: all 0.15s ease-in-out;*@
+        @*}*@
+
+        @*h1*@
+        @*{*@
+            @*text-align:center;*@
+            @*color:white;*@
+            @*padding:12px 0px;*@
+        @*}*@
+
+        @*p {*@
+            @*text-align: center;*@
+            @*d*@
+        @*}*@
+    @*</style>*@
+    <head>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/content.css")">
+    </head>
+    <body>
+
+        <header>
+            <dd>
+                <a href="@routes.HomeController.content" style="float: left" class="button"><en>Back</en></a>
+                <a href="@routes.HomeController.logout()" style="font-size: 12px; float:right" class="button">Logout</a>
+            </dd>
+        </header>
+        <div>
+            <form style="column-count:2" action = "@routes.HomeController.posteditProfile" method="post">
+                <div id="primary">
+                    <h1 style="font-size: 2em">Profile</h1>
+                    @if(userForm.hasGlobalErrors) {
+                        <p class="error">
+                        @userForm.globalError.message
+                        </p>
+                    }
+                    <p>
+                        Name:  @user.name
+                    </p>
+
+                    <p>
+                        Email: @user.email
+                    </p>
+
+                    <p>
+                        Web Authority: @user.getAuthority()
+                    </p>
+
+                    <p>
+                        Address: @user.address
+                    </p>
+
+                    <p>
+                        Hobby: @user.hobby
+                    </p>
+
+                    <p>
+                        Job: @user.job
+                    </p>
+                </div>
+
+                <div id="secondary">
+                        <h2 class="more-info">Add More Info</h2>
+                        <p>
+                            Address: <input type="address" name="address">
+                        </p>
+
+                        <p>
+                            Hobby: <input type="hobby" name="hobby">
+                        </p>
+
+                        <p>
+                            Job: <input type="job" name="job">
+                        </p>
+                        <p>
+                            <button class="button">Update</button>
+                        </p>
+                        <p>
+                            <button class="button">Cancel</button>
+                        </p>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
+
+

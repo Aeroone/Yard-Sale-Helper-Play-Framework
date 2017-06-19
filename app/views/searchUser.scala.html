@@ -1,0 +1,90 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+@(userForm: Form[controllers.UserController.UserForm], userList: List[models.User], user: User)
+
+@*
+ * Call the `main` template with two arguments. The first
+ * argument is a `String` with the title of the page, the second
+ * argument is an `Html` object containing the body of the page.
+ *@
+@main("Edited web") {
+
+    @*
+     * Get an `Html` object by calling the built-in Play welcome
+     * template and passing a `String` message.
+     *@
+
+    @*
+    * @play20.welcome(message, style = "Java")
+    *@
+
+    @*
+    *<form action = "@routes.HomeController.addPerson()" method = "post">
+    *    <input type="text" name="name" />
+    *    <button>Add Person</button>
+    *</form>
+    *@
+}
+
+<html>
+    <body>
+        <head>
+            <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+            <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/content.css")">
+        </head>
+        <body>
+        <header class = "header">
+            <dl id="user">
+                <dt>@user.name <span>(@user.email)</span></dt>
+                <dd>
+                    <a href="@routes.HomeController.logout()"class = "button">Logout</a>
+                    <a href="@routes.HomeController.content()"class = "button"><en>Back</en></a>
+                </dd>
+            </dl>
+        </header>
+        <ul style="color: white; font-family: 'Rockwell Extra Bold'">
+            @for(oneuser <- userList) {
+                <p>
+                  E-mail: @oneuser.email
+                </p>
+                <p>
+                  Name: @oneuser.name
+                </p>
+
+                <p>
+                  Role: @oneuser.getAuthority()
+                </p>
+                <p>
+                  isLocked: @oneuser.getislocked()
+                </p>
+
+                <form action="@routes.UserController.postsearchUser()" method="POST">
+                    <input type="hidden" name="email" value = "@oneuser.email"/>
+                    <input type="submit" value="Unlock" name= "Unlock"/>
+                    <input type="submit" value="Delete" name= "Delete"/>
+                </form>
+
+                <p>
+
+                </p>
+                <form action="@routes.UserController.postsearchUser()" method="POST">
+                    <label>Change Role:</label>
+                    <select name="authority">
+                        <option value="SuperUser">SuperUser</option>
+                        @*
+                        <option value="Admin">Admin</option>
+                        <option value="Bookkeeper">Bookkeeper</option>
+                        <option value="Seller">Seller</option>
+                        <option value="Clerk">Clerk</option>
+                        *@
+                        <option value="Guest">Guest</option>
+                    </select>
+                    <input type="hidden" name="email" value = "@oneuser.email"/>
+                    <input type="submit" value="Change" name= "Change"/>
+                </form>
+            }
+        </ul>
+    </body>
+</html>

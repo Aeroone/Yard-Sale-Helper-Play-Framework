@@ -1,0 +1,82 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+@(userForm: Form[controllers.ItemController.updateItemForm], newid: Int, user: models.User, saleID: String)
+
+@*
+ * Call the `main` template with two arguments. The first
+ * argument is a `String` with the title of the page, the second
+ * argument is an `Html` object containing the body of the page.
+ *@
+@main("Update Items") {
+
+    @*
+     * Get an `Html` object by calling the built-in Play welcome
+     * template and passing a `String` message.
+     *@
+
+    @*
+    * @play20.welcome(message, style = "Java")
+    *@
+
+    @*
+    *<form action = "@routes.HomeController.addPerson()" method = "post">
+    *    <input type="text" name="name" />
+    *    <button>Add Person</button>
+    *</form>
+    *@
+}
+
+<html>
+    <head>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/content.css")">
+    </head>
+    <body>
+        <header id="header">
+            <dt>@user.name <span>(@user.email)</span></dt>
+            <a href="@routes.ItemController.searchItem(saleID)" style="font-size: 12px" class="button"><en>Back</en></a>
+            <a href="@routes.HomeController.logout()" style="font-size: 12px" class="button">Logout</a>
+        </header>
+
+        <div class="form">
+            <form action = "@routes.ItemController.postupdateItem()" method = "post">
+                <h1>Update Item</h1>
+
+                @*
+                <p>
+                    Seller name:  @user.name
+                </p>
+                *@
+                <p>
+                    Item Id: @newid
+                    <input type="hidden" name="id" value = "@newid"/>
+
+                </p>
+                <p>
+                    Name: <input type = "text" name = "name">
+                </p>
+                <p>
+                    Price: <input type="price" name="price">
+                </p>
+
+                <p>
+                    Location:  <input type="location" name="location">
+                </p>
+
+                <p>
+                    Description: <input type="description" name="description">
+                </p>
+                <p>
+                    Quantity = <input type = "number" name = "quantity" value = "-1" min = "0">
+                </p>
+                <p>
+                    <button>Update</button>
+                </p>
+
+
+            </form>
+        </div>
+    </body>
+</html>

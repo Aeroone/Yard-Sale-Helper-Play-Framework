@@ -1,0 +1,50 @@
+@(transactions: List[Transaction], user: User, saleID: String)
+
+@main("Active Sales") {
+
+}
+<html>
+  <style>
+    button
+    {
+    position:absolute;
+    left: 0%;
+    top: 60%;
+    margin-top: 10px;
+    margin-bottom: 1px;
+    font-family: inherit;
+    color: white;
+    background: #6495ED;
+    outline: none;
+    border: none;
+    padding: 5px 15px;
+    font-size: 1.0em;
+    font-weight: 400;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.4);
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+</style>
+<head>
+  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/content.css")">
+</head>
+<body>
+  <header class = "header">
+  @if(user.getAuthority().equals("Admin") || user.getAuthority().equals("SuperUser")) {
+    <a href="@routes.SaleController.saleInfo(saleID)" class = "button">Back</a>
+  }
+  @if(user.getAuthority().equals("Cashier")) {
+    <a href="@routes.HomeController.content()" class = "button"><en>Back</en></a>
+  }
+  </header>
+  <div style="text-align: center">
+    @for(transaction <- transactions){
+      @if(transaction.getUserName().length() > 0) {
+        <a style="color: white; margin-bottom: 10px"  href="@routes.TransactionController.printReceipt(
+          transaction.getId())">@transaction.getUserName()</a><br>
+      }
+    }
+  </div>
+</body>
+</html>

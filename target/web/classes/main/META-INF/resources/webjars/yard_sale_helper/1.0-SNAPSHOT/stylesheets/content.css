@@ -1,0 +1,126 @@
+/* ----------- Non-Retina Screens ----------- */
+@media screen
+and (min-device-width: 1200px)
+and (max-device-width: 1600px)
+and (-webkit-min-device-pixel-ratio: 1) {
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen
+and (min-device-width: 1200px)
+and (max-device-width: 1600px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (min-resolution: 192dpi) {
+}
+
+body {
+    background-image: url(../images/1.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: auto;
+}
+
+.wel {
+    font-family: "Rockwell Extra Bold";
+    font-size: 2em;
+    float:none;
+    margin-left: 50px;
+}
+
+.title {
+    font-family: "Rockwell Extra Bold";
+    font-size: 4em;
+    float: inherit;
+    text-align: center;
+    padding: 10px;
+    text-decoration: underline;
+}
+
+.user {
+    text-align: right;
+    float: right;
+    font-family: "Arial Black";
+    color: white;
+}
+
+.links {
+    float: none;
+    text-align: center;
+    margin: 150px auto;
+}
+
+/*div {*/
+    /*top:0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+
+    /*margin: 350px auto;*/
+
+/*}*/
+
+#primary {
+    font-family: "Rockwell Extra Bold";
+    color: white;
+    float: left;
+    padding: 5%;
+    margin-left: 30%;
+    margin-top: 100px;
+    position: relative;
+}
+
+#secondary {
+    font-family: "Rockwell Extra Bold";
+    color: white;
+    float: right;
+    padding: 5%;
+    margin-right: 30%;
+    margin-top: 100px;
+    position: relative;
+}
+
+.more-info {
+    font-size: 2em;
+    margin-top: 50px;
+}
+
+.form {
+    text-align: center;
+    color: white;
+    font-family: "Rockwell Extra Bold";
+    clear:both;
+}
+
+#title {
+    text-align: center;
+    color: white;
+    font-family: "Rockwell Extra Bold";
+    font-size: 2em;
+    margin-top: 100px;
+}
+
+#side-nav a {
+    color: white;
+    display: table;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+#header {
+    float: right;
+    font-family: "Arial Black";
+    color: white;
+}
+
+.SI-button-pos p {
+    display: inline;
+}
+
+.sale-info-priv {
+    text-align: center;
+    color: white;
+    font-family: "Rockwell Extra Bold";
+    margin-top: -200px;
+}
+

@@ -1,0 +1,23 @@
+@(saleEvents: List[SaleEvent], user: User)
+
+@main("Active Sales") {
+
+}
+<html>
+    <head>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/content.css")">
+    </head>
+    <body>
+        <header>
+            <a href="@routes.HomeController.content" class="button"><en>Back</en></a>
+        </header>
+        <div style="text-align: center">
+            @for(saleEvent <- saleEvents){
+                @if(saleEvent.name.length() > 0) {
+                    <a style="color: white; margin-bottom: 10px" href="@routes.SaleController.saleInfo(saleEvent.ID)
+                    ">@saleEvent.name</a><br>
+                }
+            }
+        </div>
+    </body>
+</html>

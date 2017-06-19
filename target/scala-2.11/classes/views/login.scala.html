@@ -1,0 +1,137 @@
+@*
+ * This template is called from the `index` template. This template
+ * handles the rendering of the page header and body tags. It takes
+ * two arguments, a `String` for the title of the page and an `Html`
+ * object to insert into the body of the page.
+ *@
+@(userForm: Form[controllers.HomeController.Login])
+
+<html>
+    <style type="text/css">
+
+    #loginform {
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        margin: 250px auto;
+
+        float:center;
+        width:350px;
+        height:220px;
+        padding:10px 15px;
+        background: #316ba9;
+        border: #9219ff;
+        border-style: ridge;
+        border-radius: 100px;
+        box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 0.22);
+    }
+
+    h1 {
+        text-align:center;
+        color:white;
+        font-size:15px;
+        padding: 5px 0px;
+    }
+
+    button {
+        position:absolute;
+        left: 25%;
+        top: 70%;
+        margin-top: 10px;
+        margin-bottom: 1px;
+        font-family: inherit;
+        color: white;
+        background: #6495ED;
+        outline: none;
+        border: none;
+        padding: 5px 15px;
+        font-size: 1.0em;
+        font-weight: 400;
+        border-radius: 3px;
+        box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.4);
+        cursor: pointer;
+        transition: all 0.15s ease-in-out;
+    }
+
+    #cancel {
+        float:left;
+        width:40px;
+        height:9px;
+        padding:10px 15px;
+        position:absolute;
+        left: 48%;
+        top: 45%;
+        margin-left:10px;
+        margin-top:40px;
+    }
+
+    p {
+        text-align:center;
+        margin: 15px auto;
+    }
+
+    .error {
+        text-align: center;
+        color: red;
+        font-size: 1.125em;
+    }
+    </style>
+
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    </head>
+    <body class="mainPage">
+        <header>
+            <a href="@routes.HomeController.index" id="logo" class="button"><en>Back</en></a>
+        </header>
+
+        <div id="loginform">
+           <form action = "@routes.HomeController.index" method = "get">
+
+                <div id="cancel">
+                    <p>
+                        <button>Cancel</button>
+                    </p>
+                </div>
+
+           </form>
+
+           <form action = "@routes.HomeController.postlogin" method = "post">
+                <h1>Sign in</h1>
+
+                @if(userForm.hasGlobalErrors) {
+                    <p class="error">
+                    @userForm.globalError.message
+                    </p>
+                }
+                @if(flash.contains("success")) {
+                    <p class="success">
+                    @flash.get("success")
+                    </p>
+                }
+
+                <p>
+                    <input type="email" name="email" placeholder="Email">
+                </p>
+
+                <p>
+                    <input type="password" name="password" placeholder="Password">
+                </p>
+
+                <p>
+                    <button type="submit">Login</button>
+                </p>
+
+           </form>
+        </div>
+
+    </body>
+
+</html>
+
+
+

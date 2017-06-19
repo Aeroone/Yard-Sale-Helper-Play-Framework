@@ -1,0 +1,49 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+@(message: String)
+
+@*
+ * Call the `main` template with two arguments. The first
+ * argument is a `String` with the title of the page, the second
+ * argument is an `Html` object containing the body of the page.
+ *@
+@main("Yard Sale") {
+
+    @*
+     * Get an `Html` object by calling the built-in Play welcome
+     * template and passing a `String` message.
+     *@
+
+    @*
+    * @play20.welcome(message, style = "Java")
+    *@
+
+    @*
+    *<form action = "@routes.HomeController.addPerson()" method = "post">
+    *    <input type="text" name="name" />
+    *    <button>Add Person</button>
+    *</form>
+    *@
+
+    @message
+}
+
+<html>
+    <head>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    </head>
+
+
+    <body class="mainPage">
+        <div id="link1">
+            <a href="@routes.HomeController.login" class="button"><en>Login</en></a>
+        </div>
+        <div id="link2">
+            <a href="@routes.HomeController.register" class="button"><en>Register</en></a>
+        </div>
+    </body>
+
+
+</html>

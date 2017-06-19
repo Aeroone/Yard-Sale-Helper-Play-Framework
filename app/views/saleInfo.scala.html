@@ -1,0 +1,81 @@
+@(saleEvent: SaleEvent)
+
+@main("Sale Info") {
+
+}
+<html>
+    <head>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/content.css")">
+    </head>
+    <body>
+
+        <header id = "header">
+            <a class="button" href="@routes.HomeController.content()">Home</a>
+            <a href="@routes.SaleController.listSales()"class = "button" ><en>Back</en></a>
+        </header>
+        <div>
+            <dl id="side-nav">
+                <dd>
+                    <a href="@routes.TransactionController.createTransactionPage(saleEvent.ID)">New Transaction</a>
+                    <a href="@routes.TransactionController.listTransactions(saleEvent.ID)">View Transactions</a>
+                    <a href="@routes.ItemController.addItem(saleEvent.ID)">Add Items</a>
+                    <a href="@routes.ItemController.searchItem(saleEvent.ID)">Search all Items</a>
+                    <a href="@routes.ItemController.searchUniqueItem(saleEvent.ID)">Search Unique Item</a>
+                    <a href="@routes.ItemController.searchUnsoldedItem(saleEvent.ID)">Search Unsold Items</a>
+                    <a href="@routes.UserController.assignAdmin(saleEvent.ID)">Assign Users</a>
+                </dd>
+            </dl>
+        </div>
+        <div class="sale-info-priv">
+            <form action = "@routes.SaleController.updateSale(saleEvent.ID)" method = "post">
+                <h1>Edit Sale Event</h1>
+                <p>
+                    Name:  @saleEvent.name
+                </p>
+
+                <p>
+                    Address: @saleEvent.address
+                </p>
+
+                <p>
+                    Start Date: @saleEvent.startDate
+                </p>
+
+                <p>
+                    End Date: @saleEvent.endDate
+                </p>
+
+                <p>
+                    Name: <input type="text" name="name">
+                </p>
+
+                <p>
+                    Address:  <input type="text" name="address">
+                </p>
+
+                <p>
+                    Start Date: <input type="date" name="startDate">
+                </p>
+                <p>
+                    End Date: <input type="date" name="endDate">
+                </p>
+                <p>
+                    <button class="button">Update</button>
+                </p>
+            </form>
+            <form action = "@routes.HomeController.content" method = "get">
+                <p>
+                    <button class="button">Cancel</button>
+                </p>
+            </form>
+            <form action = "@routes.SaleController.deleteSale(saleEvent.ID)" method = "post">
+                <p>
+                    <button class="button">Delete</button>
+                </p>
+            </form>
+        </div>
+
+    </body>
+
+</html>
