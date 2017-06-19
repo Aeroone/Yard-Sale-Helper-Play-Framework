@@ -23,4 +23,13 @@ Some added features are as follows:
 
 screenshots:
 
-
+Login:
+![image](https://github.com/Aeroone/Yard-Sale-Helper-Play-Framework/blob/master/images/Login.png)
+Main:
+![image](https://github.com/Aeroone/Yard-Sale-Helper-Play-Framework/blob/master/images/Main.png)
+Sale management:
+![image](https://github.com/Aeroone/Yard-Sale-Helper-Play-Framework/blob/master/images/Sale%20management.png)
+User management:
+![image](https://github.com/Aeroone/Yard-Sale-Helper-Play-Framework/blob/master/images/User%20management.png)
+Tags:
+![image](https://github.com/Aeroone/Yard-Sale-Helper-Play-Framework/blob/master/images/Tag.png)
