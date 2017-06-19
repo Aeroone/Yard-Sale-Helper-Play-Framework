@@ -11,15 +11,15 @@ The basic functions of the web application are as follows:
 5. Manage different items. 
 6. Manage different trasactions. 
 7. View financial reports. 
-8. Administrators/Super users features: unlock account, print users list, etc. 
+8. Others: unlock account, print users list, etc. 
 
 Some added features are as follows:
 
-1. Store the photos for item description. 
+1. Store the photos for items description. 
 2. Provide email receipts. 
 3. List donated items. 
 4. Use bar-codes to get the information and check with smart phones. 
-5. etc. 
+5. others. 
 
 screenshots:
 
