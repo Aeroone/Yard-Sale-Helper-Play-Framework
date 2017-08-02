@@ -1,6 +1,6 @@
 # Yard_Sale_Helper-with-Play-Framework
 A web site demo using the Play Framework serves as a dashboard for managing and operating multiple yard/garage sales. 
-The web site is build on Play Framework (https://www.playframework.com/) with Java, HTML, CSS and JavaScript. 
+The web site is build on Play Framework (https://www.playframework.com/) with Java, Scala, HTML, CSS and JavaScript. 
 
 The basic functions of the web application are as follows:
 
